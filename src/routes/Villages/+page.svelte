@@ -1,9 +1,9 @@
 ﻿<script lang="ts">
   import VillagesTable from "$lib/components/VillagesTable.svelte";
   import VillageInputForm from "$lib/components/VillageInputForm.svelte";
-  import { villages } from "$lib/database.svelte";
+  import { database } from "$lib/database.svelte";
   
-  let length = $derived(villages.length);
+  let length = $derived(database.villages.length);
   
 </script>
 

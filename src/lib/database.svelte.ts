@@ -12,11 +12,11 @@ const databaseState = $state({
     //   warehouseCapacity: 800,
     //   granaryCapacity: 1200
     // }
-  ],
-  domestic_trade_routes: []
+  ] as Village[],
+  domestic_trade_routes: [] as DomesticTradeRoute[]
 });
 
-export let villages: Village[] = databaseState.villages;
+export const database = databaseState;
 
 export const domestic_trade_routes: DomesticTradeRoute[] = databaseState.domestic_trade_routes
 
@@ -28,7 +28,6 @@ export function addVillage(newVillage: Omit<Village, 'id'>): void {
   const villageWithId: Village = { ...newVillage, id: newId };
   
   databaseState.villages = [...databaseState.villages, villageWithId];
-  console.log(villages)
 }
 
 export function updateProduction(villageId: number, newProduction: Partial<Resources>): void {

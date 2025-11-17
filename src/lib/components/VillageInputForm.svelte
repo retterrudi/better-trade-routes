@@ -23,7 +23,6 @@
   let cropConsumption = $state<number>(0);
   
   function isStateValid(): boolean {
-    console.log("Button Pressed!");
     return true;
   }
   
@@ -38,7 +37,7 @@
         warehouseCapacity: warehouseCapacity
       });
     } else {
-      console.log("Wrong");
+      Error("Not Implemented!");
     }
   }
 </script>
