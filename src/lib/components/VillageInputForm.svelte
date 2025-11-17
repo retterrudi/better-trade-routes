@@ -3,9 +3,11 @@
   import VillageFormElementText from "$lib/components/VillageFormElementText.svelte";
   import VillageFormElementCoordinates from "$lib/components/VillageFormElementCoordinates.svelte";
   import Button from "$lib/components/Button.svelte";
+  import { addVillage } from "$lib/database.svelte";
 
   let villageName = $state("");
-  let villageCoordinates = $state("");
+  let villageCoordinatesX = $state(0);
+  let villageCoordinatesY = $state(0);
 
   let woodProduction = $state<number>(0);
   let clayProduction = $state<number>(0);
@@ -19,6 +21,26 @@
   let clayConsumption = $state<number>(0);
   let ironConsumption = $state<number>(0);
   let cropConsumption = $state<number>(0);
+  
+  function isStateValid(): boolean {
+    console.log("Button Pressed!");
+    return true;
+  }
+  
+  function onSubmit(): void {
+    if (isStateValid()) {
+      addVillage({
+        name: villageName,
+        coordinates: {x: villageCoordinatesX, y: villageCoordinatesY},
+        production: {wood: woodProduction, clay: clayProduction, iron: ironProduction, crop: cropProduction},
+        consumption: {wood: woodConsumption, clay: clayConsumption, iron: ironConsumption, crop: cropConsumption},
+        granaryCapacity: granaryCapacity,
+        warehouseCapacity: warehouseCapacity
+      });
+    } else {
+      console.log("Wrong");
+    }
+  }
 </script>
 
 <div class="form_container">
@@ -27,8 +49,8 @@
   </div>
 
   <div class="coordinates-container span-2">
-    <VillageFormElementCoordinates element_name="X Coordinate" bind:value={villageCoordinates}/>
-    <VillageFormElementCoordinates element_name="Y Coordinate" value="" />
+    <VillageFormElementNumber element_name="X Coordinate" bind:value={villageCoordinatesX} --width="120px"/>
+    <VillageFormElementNumber element_name="Y Coordinate" bind:value={villageCoordinatesY} --width="120px"/>
   </div>
 
   <div>
@@ -68,7 +90,7 @@
   <div></div>
 
   <div>
-    <Button button_text="Submit" />
+    <Button button_text="Submit" onclick={onSubmit}/>
   </div>
 </div>
 

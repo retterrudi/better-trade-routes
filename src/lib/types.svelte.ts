@@ -47,3 +47,26 @@ export interface Resources {
   iron: number | null
   crop: number | null
 }
+
+export interface Village {
+  id: number
+  name: string
+  coordinates: Coordinates
+  production: Resources
+  consumption: Resources
+  warehouseCapacity: number
+  granaryCapacity: number
+}
+
+export interface Coordinates {
+  x: number
+  y: number
+}
+
+export interface DomesticTradeRoute {
+  id: number
+  startingVillage: number
+  targetVillage: number
+  resources: Resources
+  time: string // Todo: What type should this be?
+}
