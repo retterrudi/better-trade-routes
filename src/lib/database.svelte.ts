@@ -3,15 +3,15 @@
 
 const databaseState = $state({
   villages: [
-    // {
-    //   id: 0,
-    //   name: "Test Village",
-    //   coordinates: { x: 0, y: 0 },
-    //   production: { wood: 12, clay: 14, iron: 18, crop: 24 },
-    //   consumption: { wood: 0, clay: 0, iron: 0, crop: 0 },
-    //   warehouseCapacity: 800,
-    //   granaryCapacity: 1200
-    // }
+    {
+      id: 0,
+      name: "Test Village",
+      coordinates: { x: 1, y: -2 },
+      production: { wood: 12, clay: 14, iron: 18, crop: 24 },
+      consumption: { wood: 0, clay: 0, iron: 0, crop: 0 },
+      warehouseCapacity: 800,
+      granaryCapacity: 1200
+    }
   ] as Village[],
   domestic_trade_routes: [] as DomesticTradeRoute[]
 });
