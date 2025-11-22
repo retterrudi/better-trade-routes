@@ -5,16 +5,34 @@ const databaseState = $state({
   villages: [
     {
       id: 0,
-      name: "Test Village",
+      name: "Village Number 1",
       coordinates: { x: 1, y: -2 },
       production: { wood: 12, clay: 14, iron: 18, crop: 24 },
       consumption: { wood: 0, clay: 0, iron: 0, crop: 0 },
       warehouseCapacity: 800,
       granaryCapacity: 1200,
       merchantCount: 3
+    },
+    {
+      id: 1,
+      name: "Village Number 2",
+      coordinates: { x: -1, y: 2 },
+      production: { wood: 21, clay: 41, iron: 81, crop: 42 },
+      consumption: { wood: 20, clay: 30, iron: 40, crop: 50 },
+      warehouseCapacity: 1200,
+      granaryCapacity: 800,
+      merchantCount: 6
     }
   ] as Village[],
-  domestic_trade_routes: [] as DomesticTradeRoute[]
+  domestic_trade_routes: [
+    {
+      id: 0,
+      startingVillageId: 0,
+      targetVillageId: 1,
+      resources: { wood: 100, clay: 101, iron: 102, crop: 103 },
+      time: [ 0, 1 * 3_600, 2 * 3600, 3 * 3600, 4 * 3600, 5 * 3600, 6 * 3600]
+    }
+  ] as DomesticTradeRoute[]
 });
 
 export const database = databaseState;

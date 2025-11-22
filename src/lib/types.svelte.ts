@@ -66,8 +66,8 @@ export interface Coordinates {
 
 export interface DomesticTradeRoute {
   id: number
-  startingVillage: number
-  targetVillage: number
+  startVillageId: number
+  targetVillageId: number
   resources: Resources
-  time: string // Todo: What type should this be?
+  startTimes: number[] // Seconds after 00:00 AM; 0 - 86400; 
 }
