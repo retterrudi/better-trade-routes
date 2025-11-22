@@ -1,7 +1,6 @@
 ﻿<script lang="ts">
   import VillageFormElementNumber from "$lib/components/VillageFormElementNumber.svelte";
   import VillageFormElementText from "$lib/components/VillageFormElementText.svelte";
-  import VillageFormElementCoordinates from "$lib/components/VillageFormElementCoordinates.svelte";
   import Button from "$lib/components/Button.svelte";
   import { addVillage } from "$lib/database.svelte";
 
