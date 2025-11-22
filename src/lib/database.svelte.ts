@@ -10,7 +10,8 @@ const databaseState = $state({
       production: { wood: 12, clay: 14, iron: 18, crop: 24 },
       consumption: { wood: 0, clay: 0, iron: 0, crop: 0 },
       warehouseCapacity: 800,
-      granaryCapacity: 1200
+      granaryCapacity: 1200,
+      merchantCount: 3
     }
   ] as Village[],
   domestic_trade_routes: [] as DomesticTradeRoute[]

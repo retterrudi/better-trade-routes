@@ -56,6 +56,7 @@ export interface Village {
   consumption: Resources
   warehouseCapacity: number
   granaryCapacity: number
+  merchantCount: number
 }
 
 export interface Coordinates {
