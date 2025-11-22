@@ -13,6 +13,7 @@
 	<nav>
 		<a href="/">Home</a>
 		<a href="/Villages">Villages</a>
+    <a href="/Trade-Routes">Trade Routes</a>
 		<a href="/about">About</a>
 	</nav>
 	{@render children?.()}

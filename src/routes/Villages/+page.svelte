@@ -1,6 +1,6 @@
 ﻿<script lang="ts">
   import VillagesTable from "$lib/components/VillagesTable.svelte";
-  import VillageInputForm from "$lib/components/VillageInputForm.svelte";
+  import VillageForm from "$lib/components/VillageForm.svelte";
   import { database } from "$lib/database.svelte";
   
   let length = $derived(database.villages.length);
@@ -12,7 +12,7 @@
 <div style="margin-bottom: 20px"></div>
 
 <div>
-  <VillageInputForm />
+  <VillageForm />
 </div>
 
 <div>
