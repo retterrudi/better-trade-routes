@@ -1,32 +1,38 @@
 <script lang="ts">
   import { database } from "$lib/database.svelte";
+  import FormElementCombobox from "$lib/components/FormElementCombobox.svelte";
+  import VillageFormElementNumber from "$lib/components/VillageFormElementNumber.svelte";
+  
+  let comboboxVillages = $derived(database.villages.map(village => ({ id: village.id, name: village.name })));
+  
+  let startVillageId = $state<number>();
+  let targetVillageId = $state<number>();
+  
+  let wood = $state(0);
+  let clay = $state(0);
+  let iron = $state(0);
+  let crop = $state(0);
 </script>
 
-<h2>TradeRouteForm</h2>
+<div class="container">
+  <FormElementCombobox 
+      listElements={comboboxVillages} 
+      elementName="Start Village"
+      bind:value="{startVillageId}"
+  />
+  <FormElementCombobox
+      listElements={comboboxVillages}
+      elementName="Target Village"
+      bind:value="{targetVillageId}"
+  />
+  <VillageFormElementNumber elementName="Wood" bind:value={wood} />
+  <VillageFormElementNumber elementName="Clay" bind:value={clay} />
+  <VillageFormElementNumber elementName="Iron" bind:value={iron} />
+  <VillageFormElementNumber elementName="Crop" bind:value={crop} />
+</div>
 
-<table>
-  <thead>
-    <tr>
-      <th>Start Village</th>
-      <th>Target Village</th>
-      <th>Wood</th>
-      <th>Clay</th>
-      <th>Iron</th>
-      <th>Crop</th>
-      <th>Start Time</th>
-    </tr>
-  </thead>
-  <tbody>
-  {#each database.domestic_trade_routes as tradeRoute}
-    <tr>
-      <td>{database.villages.at(tradeRoute.startVillageId).name}</td>
-      <td>{database.villages.at(tradeRoute.targetVillageId).name}</td>
-      <td>{tradeRoute.resources.wood}</td>
-      <td>{tradeRoute.resources.clay}</td>
-      <td>{tradeRoute.resources.iron}</td>
-      <td>{tradeRoute.resources.crop}</td>
-      <td>{tradeRoute.startTimes}</td>
-    </tr>
-  {/each}
-  </tbody>
-</table>
+<style>
+  .container {
+    background: aquamarine;
+  }
+</style>
