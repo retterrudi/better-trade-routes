@@ -69,5 +69,5 @@ export interface DomesticTradeRoute {
   startVillageId: number
   targetVillageId: number
   resources: Resources
-  startTimes: number[] // Seconds after 00:00 AM; 0 - 86400; 
+  startTime: number // Seconds after 00:00 AM; 0 - 86400; 
 }

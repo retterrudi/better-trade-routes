@@ -1,9 +1,7 @@
 ﻿<script lang="ts">
-  import type { StyleProps } from "$lib/types.svelte";
-
   let {element_name = "Element Name", value = $bindable()}: {
     element_name: string,
-    value: string,
+    value: number,
   } = $props();
 </script>
 

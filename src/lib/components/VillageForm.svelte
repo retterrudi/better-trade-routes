@@ -88,7 +88,7 @@
   <div></div>
 
   <div>
-    <Button button_text="Submit" onclick={onSubmit}/>
+    <Button buttonText="Submit" onclick={onSubmit}/>
   </div>
 </div>
 

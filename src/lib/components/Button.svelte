@@ -1,7 +1,7 @@
 ﻿<script lang="ts">
-  const { button_text, onclick }: { button_text: string, onclick: () => void } = $props(); 
+  const { buttonText, onclick }: { buttonText: string, onclick: () => void } = $props(); 
 </script>
 
 <button onclick={onclick}>
-  {button_text}
+  {buttonText}
 </button>

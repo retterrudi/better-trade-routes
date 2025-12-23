@@ -37,8 +37,6 @@ const databaseState = $state({
 
 export const database = databaseState;
 
-export const domestic_trade_routes: DomesticTradeRoute[] = databaseState.domestic_trade_routes
-
 export function addVillage(newVillage: Omit<Village, 'id'>): void {
   const newId = databaseState.villages.length > 0
     ? Math.max(...databaseState.villages.map(v => v.id)) + 1
@@ -59,4 +57,74 @@ export function updateProduction(villageId: number, newProduction: Partial<Resou
     }
     return village;
   });
+}
+
+export function addDomesticTradeRoute(newTradeRoute: Omit<DomesticTradeRoute, 'id'>): Result<number> {
+  const newId = databaseState.domestic_trade_routes.length > 0
+    ? Math.max(...databaseState.domestic_trade_routes.map(v => v.id)) + 1
+    : 1;
+  
+  if (!database.villages.find(v => v.id === newTradeRoute.startVillageId)) {
+    return {
+      success: false,
+      error: {
+        kind: 'INVALID_START_VILLAGE',
+        message: 'The start village was not found.',
+      }
+    }
+  }
+  
+  if (!database.villages.find(v => v.id === newTradeRoute.targetVillageId)) {
+    return {
+      success: false,
+      error: {
+        kind: 'INVALID_TARGET_VILLAGE',
+        message: 'The target village was not found.',
+      }
+    }
+  }
+  
+  const routeWithId: DomesticTradeRoute = { ...newTradeRoute, id: newId};
+  
+  databaseState.domestic_trade_routes = [...databaseState.domestic_trade_routes, routeWithId];
+  
+  return { 
+    success: true, 
+    data: 1 // For now affected rows
+  };
+}
+
+export type Result<T> = SuccessResult<T> | FailureResult;
+
+export type SuccessResult<T> = {
+  success: true;
+  data: T;
+}
+
+export type FailureResult = {
+  success: false;
+  error: DatabaseError;
+}
+
+export type DatabaseError = InvalidStartVillage | InvalidTargetVillage | InvalidResourceAmount | InvalidTime
+
+export interface InvalidStartVillage {
+  kind: 'INVALID_START_VILLAGE';
+  message: string;
+}
+
+export interface InvalidTargetVillage {
+  kind: 'INVALID_TARGET_VILLAGE';
+  message: string;
+}
+
+export interface InvalidResourceAmount {
+  kind: 'INVALID_RESOURCE_AMOUNT';
+  message: string;
+  field: string;
+}
+
+export interface InvalidTime {
+  kind: 'INVALID_TIME';
+  message: string;
 }
